@@ -7,14 +7,14 @@ config();
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    port: process.env.DATABASE_URL ? undefined : process.env.DB_PORT,
-    host: process.env.DATABASE_URL ? undefined : process.env.DB_HOST,
-    database: process.env.DATABASE_URL ? undefined : process.env.DB_NAME,
-    password: process.env.DATABASE_URL ? undefined : process.env.DB_PASSWORD,
-    user: process.env.DATABASE_URL ? undefined : process.env.DB_USER,
-    // ssl: {
-    //     rejectUnauthorized: false
-    // }
+    port: process.env.DATABASE_URL ? undefined : process.env.PGPORT,
+    host: process.env.DATABASE_URL ? undefined : process.env.PGHOST,
+    database: process.env.DATABASE_URL ? undefined : process.env.PGDATABASE,
+    password: process.env.DATABASE_URL ? undefined : process.env.PGPASSWORD,
+    user: process.env.DATABASE_URL ? undefined : process.env.PGUSER,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 
