@@ -12,7 +12,7 @@ const pool = new Pool({
     database: process.env.DATABASE_URL ? undefined : process.env.PGDATABASE,
     password: process.env.DATABASE_URL ? undefined : process.env.PGPASSWORD,
     user: process.env.DATABASE_URL ? undefined : process.env.PGUSER,
-    ssl: {
+    ssl: process.env.DATABASE_URL?.includes("localhost") ? false : {
         rejectUnauthorized: false
     }
 });
@@ -20,8 +20,10 @@ const pool = new Pool({
 
 
 const connectDb = async () => {
+    const client = await pool.connect();
+    console.log('Database is connected successfully');
+    client.release();
     await initDatabase(pool);
-    await pool.connect()
     pool.on('connect', () => {
         console.log('database is connected');
 
